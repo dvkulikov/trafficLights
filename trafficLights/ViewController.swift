@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum ColourOfLight {
+    case red, yellow, green
+}
+
 class ViewController: UIViewController {
 
     @IBOutlet var startButton: UIButton!
@@ -15,12 +19,13 @@ class ViewController: UIViewController {
     @IBOutlet var yellowLightView: UIView!
     @IBOutlet var greenLightView: UIView!
     
-    
+    var colourOfLight = ColourOfLight.red
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         startButton.layer.cornerRadius = 10
+        
         
         redLightView.alpha = 0.3
         yellowLightView.alpha = 0.3
@@ -33,21 +38,21 @@ class ViewController: UIViewController {
     }
 
     @IBAction func startButtonPressed() {
-        var colourOfLight = "red"
+        startButton.setTitle("NEXT", for: .normal)
+        
         switch colourOfLight {
-        case "red":
+        case .red:
+            greenLightView.alpha = 0.3
             redLightView.alpha = 1
-            startButton.setTitle("NEXT", for: .normal)
-            colourOfLight = "yellow"
-        case "yellow":
+            colourOfLight = .yellow
+        case .yellow:
             redLightView.alpha = 0.3
             yellowLightView.alpha = 1
-            colourOfLight = "green"
-        case "green":
+            colourOfLight = .green
+        case .green:
             yellowLightView.alpha = 0.3
             greenLightView.alpha = 1
-        default:
-            greenLightView.alpha = 0.3
+            colourOfLight = .red
         }
         
     }
